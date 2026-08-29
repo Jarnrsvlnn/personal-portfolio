@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@utility no-scrollbar {
+    @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
+@layer utilities {
+    @keyframes scroll {
+        from {translate: 0;}
+        to {translate:-33%;} 
+    }
+
+    .animate-scroll {
+        animation: scroll 10s infinite linear;
+    }   
+}
+
+:root {
+    --theme-bg: #000000;
+    --theme-text: #ffffff;
+    --theme-text-muted: rgba(255, 255, 255, 0.6);
+    
+    /* Dark Mode Glass */
+    --glass-bg: rgba(30, 30, 35, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-shadow: rgba(0, 0, 0, 0.5);
+    --glass-inset: rgba(255, 255, 255, 0.08);
+    --glass-hover: rgba(255, 255, 255, 0.1);
+    --separator: rgba(255, 255, 255, 0.1);
+    --widget-fill: rgba(255, 255, 255, 0.85);
+}
+
+.liquid-glass {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(255, 255, 255, 0.02) 50%,
+        rgba(255, 255, 255, 0.07) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        0 2px 8px rgba(0, 0, 0, 0.3);   
+    position: relative;
+    z-index: 0;
+}
+  
+/* Faded edge glow — bottom-right corner */
+.liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: linear-gradient(
+        315deg,
+        rgba(255, 255, 255, 0.55) 0%,     /* bright bottom-right corner */
+        rgba(255, 255, 255, 0.2)  20%,    /* fades along bottom edge */
+        rgba(255, 255, 255, 0.0)  45%,    /* gone by center */
+        rgba(255, 255, 255, 0.0)  60%,    /* dark top */
+        rgba(255, 255, 255, 0.08) 100%    /* faint top-left */
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+  
+/* Inner glow — soft light pooling in the bottom-right inside the glass */
+.liquid-glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+        ellipse at 85% 85%,
+        rgba(255, 255, 255, 0.09) 0%,
+        rgba(255, 255, 255, 0.04) 35%,
+        rgba(255, 255, 255, 0.0)  70%
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
+.liquid-panel {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 
+        0 20px 40px -10px var(--glass-shadow), 
+        inset 0 1px 1px 0 var(--glass-inset);
+}
+
+.active {
+    font-weight: bold;
+    font-size: medium;
+}
