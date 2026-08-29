@@ -34,4 +34,4 @@ COPY --from=frontend /app/public/build ./public/build
 
 RUN composer dump-autoload --optimize
 
-CMD php -S 0.0.0.0:${PORT:-8080} -t public
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t public"]
