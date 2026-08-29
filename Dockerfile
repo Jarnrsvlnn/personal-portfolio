@@ -29,9 +29,12 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --no-script
 
 COPY . .
 
+RUN touch database/database.sqlite \
+    && chmod -R 775 storage bootstrap/cache database
+
 # Copy the freshly built Vite assets
 COPY --from=frontend /app/public/build ./public/build
 
 RUN composer dump-autoload --optimize
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t public"]
+CMD ["sh", "-c", "php artisan migrate --force && php -S 0.0.0.0:${PORT:-8080} -t public"]
