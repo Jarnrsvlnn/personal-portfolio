@@ -41,7 +41,7 @@
 
         {{-- LOWER CONTAINER --}}
         <x-description-text>
-            Hi! I'm a 20-years-old student from the Philippines, I mainly do <span class="text-green-400">web development</span>. I also do <span class="text-green-400">video editing</span> and <span class="text-green-400">UI/UX designing</span> as creative hobbies.
+            Hi! I'm a 19-years-old student from the Philippines, I mainly do <span class="text-green-400">web development</span>. I also do <span class="text-green-400">video editing</span> and <span class="text-green-400">UI/UX designing</span> as creative hobbies.
         </x-description-text>
     </div>
 
